@@ -3,17 +3,25 @@ import { ActivityIndicator } from "react-native";
 import Input from "../../components/Input";
 import { ButtonText, Container, Label, LoginButton, Wrapper } from "./styles";
 
-const SignIn = () => {
+interface SignInProps {
+  navigation: {
+    navigate: (p: string) => void;
+  };
+}
+
+const SignIn = ({ navigation }: SignInProps) => {
   const emailRef = useRef<any>();
   const passwordRef = useRef<any>();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const handleLogin = async () => {
+  function handleLogin() {
     setLoading(true);
-    await setTimeout(() => {}, 50);
+    setTimeout(() => {
+      return navigation.navigate("BottomRoutes");
+    }, 50);
     setLoading(false);
-  };
+  }
   return (
     <Container>
       <Wrapper>
@@ -44,11 +52,7 @@ const SignIn = () => {
           onSubmitEditing={handleLogin}
         />
       </Wrapper>
-      <LoginButton
-        onPress={() => {
-          handleLogin();
-        }}
-      >
+      <LoginButton onPress={() => handleLogin()}>
         {!loading ? (
           <ButtonText>Login</ButtonText>
         ) : (
