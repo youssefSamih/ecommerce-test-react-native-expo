@@ -43,8 +43,7 @@ export const DepartmentImage = styled.Image.attrs({
   flex: 1;
 `;
 
-export const DepartmentText = styled(CustomText)`
-  font-family: "roboto-bold";
+export const DepartmentText = styled.Text`
   font-size: 11px;
   color: ${colors.text};
 `;
@@ -65,10 +64,4 @@ export const Wrapper = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-`;
-
-export const EmptyImage = styled.Image.attrs({
-  resizeMode: "contain",
-})`
-  width: ${Dimensions.get("window").width * 1};
 `;
