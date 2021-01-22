@@ -3,6 +3,7 @@ import { Text } from "react-native";
 
 interface CustomTextProps {
   children: ElementType | string;
+  onPress?: any;
 }
 
 const CustomText = ({ children, ...rest }: CustomTextProps) => {

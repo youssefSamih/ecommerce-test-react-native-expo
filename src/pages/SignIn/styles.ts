@@ -23,7 +23,6 @@ export const CustomImage = styled.Image.attrs({
 `;
 
 export const Label = styled(CustomText)`
-  font-family: "roboto-bold";
   font-size: 16;
   color: ${colors.white};
 `;
@@ -39,7 +38,6 @@ export const LoginButton = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled(CustomText)`
-  font-family: "roboto-bold";
   font-size: 20;
   color: ${colors.primary};
 `;

@@ -1,11 +1,13 @@
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import Home from "../pages/Home";
+import Product from "../pages/Product";
 import SignIn from "../pages/SignIn";
 
 const HomeRoute = createSwitchNavigator(
   {
     Home,
+    Product,
   },
   {
     initialRouteName: "Home",

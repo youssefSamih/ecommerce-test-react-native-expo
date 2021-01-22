@@ -85,12 +85,12 @@ const ProdItem = ({ navigation, item }: ProdItemProps) => {
       </LeftContent>
       <RightContent>
         <Title
-        // onPress={() =>
-        //   navigation.navigate("Product", {
-        //     product: item,
-        //     keyScreen: (navigation.state as { key: any }).key,
-        //   })
-        // }
+          onPress={() =>
+            navigation.navigate("Product", {
+              product: item,
+              keyScreen: (navigation.state as { key: any }).key,
+            })
+          }
         >
           {item.title}
         </Title>

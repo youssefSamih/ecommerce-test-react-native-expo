@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { FlatList } from "react-native";
 import CustomText from "../../components/CustomText";
-import Header from "../../components/Header";
 import ProductItem from "../../components/ProductItem";
 import api from "../../services/api";
+import { SpinnerLoading } from "../sharedStyle";
 import {
   Container,
   DepartmentContainer,
@@ -12,7 +12,6 @@ import {
   DepartmentLogo,
   DepartmentText,
   SalesContainer,
-  SpinnerLoading,
   Wrapper,
 } from "./styles";
 
@@ -40,9 +39,16 @@ const Home = ({ navigation }: HomeProps) => {
     loadProducts();
     setLoading(false);
   }, [loadCategories, loadProducts]);
+  useMemo(async () => {
+    setLoading(true);
+    let response;
+    response = await api.get(`category/${department}`);
+    const data = response.data;
+    setProducts(data);
+    setLoading(false);
+  }, [department]);
   return (
     <Container>
-      <Header handleSearchSubmit={(search: string) => ({})} />
       <DepartmentContainer>
         {loading ? (
           <SpinnerLoading />

@@ -1,6 +1,4 @@
 import styled from "styled-components/native";
-import { ActivityIndicator, Dimensions } from "react-native";
-import CustomText from "../../components/CustomText";
 import colors from "../../styles/colors";
 
 export const Container = styled.SafeAreaView`
@@ -52,13 +50,6 @@ export const SalesContainer = styled.View`
   flex: 1;
   margin-bottom: 5px;
 `;
-
-export const SpinnerLoading = styled(ActivityIndicator).attrs({
-  color: "tomato",
-  alignSelf: "center",
-  marginTop: 20,
-  size: "large",
-})``;
 
 export const Wrapper = styled.View`
   flex: 1;
