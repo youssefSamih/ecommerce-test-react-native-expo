@@ -5,7 +5,6 @@ import { Text } from "react-native";
 import TabIcon from "../components/TabIcon";
 import Home from "../pages/Home";
 import Product from "../pages/Product";
-import SignIn from "../pages/SignIn";
 import Profile from "../pages/Profile";
 import Cart from "../pages/Cart";
 import colors from "../styles/colors";
@@ -77,7 +76,6 @@ const BottomRoutes = createMaterialBottomTabNavigator(
 
 const MainEntryPoint = createSwitchNavigator(
   {
-    SignIn,
     BottomRoutes,
   },
   {
