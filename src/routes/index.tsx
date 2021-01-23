@@ -7,8 +7,10 @@ import Home from "../pages/Home";
 import Product from "../pages/Product";
 import SignIn from "../pages/SignIn";
 import Profile from "../pages/Profile";
+import Cart from "../pages/Cart";
 import colors from "../styles/colors";
 import { tabBarOnPressProps } from "./interfaces";
+import TabStateIcon from "../components/TabStateIcon";
 
 const HomeRoute = createSwitchNavigator(
   {
@@ -42,10 +44,27 @@ const ProfileRoute = createSwitchNavigator(
   }
 );
 
+const CartRoute = createSwitchNavigator(
+  {
+    Cart,
+  },
+  {
+    initialRouteName: "Cart",
+    navigationOptions: {
+      tabBarColor: colors.primary,
+      tabBarLabel: <Text style={{ fontSize: 12 }}>Carrinho</Text>,
+      tabBarIcon: (props: any) => (
+        <TabStateIcon name="shopping-cart" {...props} />
+      ),
+    },
+  }
+);
+
 const BottomRoutes = createMaterialBottomTabNavigator(
   {
     HomeRoute,
     ProfileRoute,
+    CartRoute,
   },
   {
     initialRouteName: "HomeRoute",
