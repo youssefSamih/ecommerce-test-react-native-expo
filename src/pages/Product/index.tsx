@@ -12,7 +12,6 @@ import {
   Header,
   Container,
   ProductInfo,
-  ProductHeader,
   Name,
   PriceOriginal,
   PriceContainer,
@@ -20,7 +19,6 @@ import {
   ProductFinish,
   Description,
   AddButton,
-  FavoriteButton,
   ContainerImage,
   ProductImage,
   SafeContainer,
@@ -67,19 +65,6 @@ const Product = ({ navigation }: ProductProps) => {
           >
             <FontAwesome name="arrow-left" color="#a4a4a4" size={18} />
           </TouchableOpacity>
-          <ProductHeader>
-            <FavoriteButton onPress={() => handleFavorite(product)}>
-              {!favorited ? (
-                <FontAwesome
-                  name="heart"
-                  color="rgba(255, 0, 0, 0.6)"
-                  size={20}
-                />
-              ) : (
-                <FontAwesome name="heart-o" color="#a4a4a4" size={20} />
-              )}
-            </FavoriteButton>
-          </ProductHeader>
         </Header>
         <ContainerImage>
           <ProductImage source={{ uri: product.image }} />

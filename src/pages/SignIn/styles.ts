@@ -23,7 +23,7 @@ export const CustomImage = styled.Image.attrs({
 `;
 
 export const Label = styled(CustomText)`
-  font-size: 16;
+  font-size: 16px;
   color: ${colors.white};
 `;
 
@@ -38,6 +38,6 @@ export const LoginButton = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled(CustomText)`
-  font-size: 20;
+  font-size: 20px;
   color: ${colors.primary};
 `;

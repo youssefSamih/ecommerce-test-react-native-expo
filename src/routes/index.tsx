@@ -6,6 +6,7 @@ import TabIcon from "../components/TabIcon";
 import Home from "../pages/Home";
 import Product from "../pages/Product";
 import SignIn from "../pages/SignIn";
+import Profile from "../pages/Profile";
 import colors from "../styles/colors";
 import { tabBarOnPressProps } from "./interfaces";
 
@@ -27,9 +28,24 @@ const HomeRoute = createSwitchNavigator(
   }
 );
 
+const ProfileRoute = createSwitchNavigator(
+  {
+    Profile,
+  },
+  {
+    initialRouteName: "Profile",
+    navigationOptions: {
+      tabBarLabel: <Text style={{ fontSize: 12 }}>Profile</Text>,
+      tabBarIcon: (props: any) => <TabIcon name="user" {...props} />,
+      tabBarColor: `${colors.primary}`,
+    },
+  }
+);
+
 const BottomRoutes = createMaterialBottomTabNavigator(
   {
     HomeRoute,
+    ProfileRoute,
   },
   {
     initialRouteName: "HomeRoute",

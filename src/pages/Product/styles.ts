@@ -2,7 +2,6 @@ import styled from "styled-components/native";
 import CustomText from "../../components/CustomText";
 import BuyButton from "../../components/BuyButton";
 import colors from "../../styles/colors";
-import { RectButton } from "react-native-gesture-handler";
 
 export const Container = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
@@ -88,15 +87,6 @@ export const Actions = styled.View`
 export const AddButton = styled(BuyButton)`
   flex: 1;
   border-radius: 0;
-`;
-
-export const FavoriteButton = styled(RectButton)`
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.3);
-  align-items: center;
-  justify-content: center;
 `;
 
 export const ContainerImage = styled.View`
