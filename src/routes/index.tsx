@@ -52,7 +52,7 @@ const CartRoute = createSwitchNavigator(
     initialRouteName: "Cart",
     navigationOptions: {
       tabBarColor: colors.primary,
-      tabBarLabel: <Text style={{ fontSize: 12 }}>Carrinho</Text>,
+      tabBarLabel: <Text style={{ fontSize: 12 }}>Cart</Text>,
       tabBarIcon: (props: any) => (
         <TabStateIcon name="shopping-cart" {...props} />
       ),

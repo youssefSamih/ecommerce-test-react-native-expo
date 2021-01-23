@@ -5,7 +5,7 @@ import LottieView from "lottie-react-native";
 import CustomText from "../../components/CustomText";
 import colors from "../../styles/colors";
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
   padding: 5px;
   background: ${colors.background};
@@ -73,4 +73,11 @@ export const CheckoutAnimation = styled(LottieView).attrs({
 })`
   height: 150px;
   width: 150px;
+`;
+
+export const TotalContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
 `;

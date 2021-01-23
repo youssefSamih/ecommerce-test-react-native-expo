@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import checkout from "../../../assets/animations/checkout.json";
 import CustomText from "../../components/CustomText";
@@ -17,6 +17,7 @@ import {
   TotalWrapper,
   Wrapper,
   WrapperAnimation,
+  TotalContainer,
 } from "./styles";
 
 interface CartProps {
@@ -65,10 +66,10 @@ const Cart = ({ navigation }: CartProps) => {
             renderItem={({ item }) => <ProductCart item={item} />}
           />
           <TotalWrapper>
-            <TotalText>
-              {`TOTAL
-              ${(<TotalPrice>{total}</TotalPrice>)}`}
-            </TotalText>
+            <TotalContainer>
+              <TotalText>TOTAL</TotalText>
+              <TotalPrice>{total}</TotalPrice>
+            </TotalContainer>
           </TotalWrapper>
           <FinishButton onPress={() => handleCheckout()}>
             <ButtonText>Finalize order</ButtonText>
