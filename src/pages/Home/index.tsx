@@ -3,6 +3,7 @@ import { FlatList } from "react-native";
 import CustomText from "../../components/CustomText";
 import ProductItem from "../../components/ProductItem";
 import api from "../../services/api";
+import registerForPushNotifications from "../../util/registerForPushNotifications";
 import { SpinnerLoading } from "../sharedStyle";
 import {
   Container,
@@ -38,8 +39,9 @@ const Home = ({ navigation }: HomeProps) => {
     setLoading(true);
     loadCategories();
     loadProducts();
+    registerForPushNotifications();
     setLoading(false);
-  }, [loadCategories, loadProducts]);
+  }, [loadCategories, loadProducts, registerForPushNotifications]);
   useMemo(async () => {
     setLoading(true);
     let response;
@@ -51,7 +53,7 @@ const Home = ({ navigation }: HomeProps) => {
   return (
     <Container>
       <DepartmentContainer>
-        {loading ? (
+        {loading && !category ? (
           <SpinnerLoading />
         ) : (
           category.map((cat) => (
@@ -69,7 +71,7 @@ const Home = ({ navigation }: HomeProps) => {
         )}
       </DepartmentContainer>
       <SalesContainer>
-        {loading ? (
+        {loading && !products ? (
           <SpinnerLoading />
         ) : (
           <>
@@ -83,6 +85,8 @@ const Home = ({ navigation }: HomeProps) => {
                   <ProductItem item={item} navigation={navigation} />
                 )}
               />
+            ) : loading ? (
+              <SpinnerLoading />
             ) : (
               <Wrapper>
                 <CustomText>Not found</CustomText>

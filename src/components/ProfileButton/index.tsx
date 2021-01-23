@@ -1,17 +1,23 @@
-import React, { ElementType } from 'react';
+import React, { ElementType } from "react";
 
-import { Container, Icon, Wrapper, Title } from './styles';
+import { Container, Icon, Wrapper, Title } from "./styles";
 
 interface ProfileButtonProps {
   name: string;
   children: ElementType | string;
   margin?: number;
+  onPress?: () => void;
 }
 
-const ProfileButton = ({ name, children, margin = 0 }: ProfileButtonProps) => {
+const ProfileButton = ({
+  name,
+  children,
+  margin = 0,
+  onPress,
+}: ProfileButtonProps) => {
   return (
-    <Container margin={margin}>
-      <Icon name={name} />
+    <Container {...{ margin, onPress }}>
+      <Icon {...{ name }} />
       <Wrapper>
         <Title>{children}</Title>
       </Wrapper>

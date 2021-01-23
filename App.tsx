@@ -2,12 +2,16 @@ import React from "react";
 import Routes from "./src/routes";
 import { Provider } from "react-redux";
 import store from "./src/store";
+import { StatusBar } from "expo-status-bar";
 
 const App = () => {
   return (
-    <Provider {...{ store }}>
-      <Routes />
-    </Provider>
+    <>
+      <StatusBar />
+      <Provider {...{ store }}>
+        <Routes />
+      </Provider>
+    </>
   );
 };
 

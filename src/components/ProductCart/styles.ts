@@ -45,7 +45,7 @@ export const Description = styled(CustomText).attrs({
 export const Price = styled(CustomText)`
   font-size: 20px;
   color: ${colors.primary};
-  letter-spacing: 1;
+  letter-spacing: 1px;
 `;
 
 export const Title = styled(CustomText)`
