@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { FontAwesome } from "@expo/vector-icons/";
+import { useSelector } from "react-redux";
 import { TabIconProps } from "../interfaces";
 
 import { Container, Circle, Number } from "./styles";
 
 const TabIcon = ({ name, tintColor }: TabIconProps) => {
-  const cartSize = 0;
-  const favoriteSize = 0;
+  const cartSize = useSelector((state: { cart: any[] }) => state.cart.length);
+  const favoriteSize = useSelector(
+    (state: { favorite: any[] }) => state.favorite.length
+  );
 
   useEffect(() => {}, [cartSize]);
 

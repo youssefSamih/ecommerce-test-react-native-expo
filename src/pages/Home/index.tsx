@@ -20,6 +20,7 @@ interface HomeProps {
 }
 
 const all = require("../../../assets/icons/online-store.png");
+
 const Home = ({ navigation }: HomeProps) => {
   const [department, setDepartment] = useState("");
   const [loading, setLoading] = useState(false);

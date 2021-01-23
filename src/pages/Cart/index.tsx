@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { FlatList } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import checkout from "../../../assets/animations/checkout.json";
 import CustomText from "../../components/CustomText";
 import ProductCart from "../../components/ProductCart";
+import { formatPrice } from "../../util/format";
+import * as CartActions from "../../store/modules/cart/actions";
 import {
   ButtonText,
   BuyButton,
@@ -20,11 +23,27 @@ interface CartProps {
   navigation: any;
 }
 
+type productParams = { finalPrice: number; amount: number };
+
 const Cart = ({ navigation }: CartProps) => {
+  const dispatch = useDispatch();
   const [isCheckout, setIsCheckout] = useState(false);
-  const cart: any = [];
-  const total = "0";
+  const cart = useSelector((state: any) =>
+    state.cart.map((product: productParams) => ({
+      ...product,
+      subtotal: formatPrice(product.finalPrice * product.amount),
+    }))
+  );
+  const total = useSelector((state: any) =>
+    formatPrice(
+      state.cart.reduce((totalSum: number, product: productParams) => {
+        return totalSum + product.finalPrice * product.amount;
+      }, 0)
+    )
+  );
   const handleCheckout = () => {
+    dispatch(CartActions.checkoutRequest());
+
     setIsCheckout(true);
     setTimeout(() => {
       setIsCheckout(false);

@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons/";
 
 import { formatPrice } from "../../util/format";
-
-// import * as FavoriteActions from 'store/modules/favorite/actions';
-// import * as CartActions from 'store/modules/cart/actions';
+import * as CartActions from "../../store/modules/cart/actions";
 
 import {
   Header,
@@ -24,8 +22,6 @@ import {
   SafeContainer,
 } from "./styles";
 
-// import Carousel from "../../components/Carousel";
-
 interface ProductProps {
   navigation: any;
 }
@@ -33,27 +29,10 @@ interface ProductProps {
 const Product = ({ navigation }: ProductProps) => {
   const product = navigation.getParam("product");
   const { params } = navigation.state;
-  const [favorited, setFavorited] = useState(false);
-  // const dispatch = useDispatch();
-
-  // const favoritedItem = useSelector((state: any) =>
-  //   state.favorite.filter((f: { id: any }) => f.id === product.id)
-  // );
-
-  // useEffect(() => {
-  //   if (favoritedItem >= 0) {
-  //     setFavorited(true);
-  //   } else {
-  //     setFavorited(false);
-  //   }
-  // }, [favoritedItem]);
+  const dispatch = useDispatch();
 
   const handleAddProduct = (id: any) => {
-    // dispatch(CartActions.addToCartRequest(id));
-  };
-
-  const handleFavorite = (prod: any) => {
-    // dispatch(FavoriteActions.toggleFavorite(prod));
+    dispatch(CartActions.addToCartRequest(id));
   };
 
   return (

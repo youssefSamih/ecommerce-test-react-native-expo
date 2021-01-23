@@ -1,7 +1,8 @@
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FontAwesome } from "@expo/vector-icons/";
-
+import { useDispatch } from "react-redux";
+import * as CartActions from "../../store/modules/cart/actions";
 import {
   ProductItem,
   ProductContent,
@@ -20,7 +21,7 @@ import {
 interface ProductCartProps {
   item: {
     id: number;
-    images: string[];
+    image: string;
     title: string;
     amount: number;
     subtotal: string;
@@ -29,22 +30,27 @@ interface ProductCartProps {
 
 type ProductParams = {
   id: any;
-  images?: string[];
+  image?: string;
   title?: string;
   amount: any;
   subtotal?: string;
 };
 
 const ProductCart = ({ item }: ProductCartProps) => {
-  const productImage = { ...item.images };
+  const dispatch = useDispatch();
+  const productImage = item.image;
 
-  const handleDeleteProduct = (id: number) => {};
+  const handleDeleteProduct = (id: number) => {
+    dispatch(CartActions.removeFromCart(id));
+  };
 
-  const increment = (product: ProductParams) => {};
+  const increment = (product: ProductParams) => {
+    dispatch(CartActions.updateAmountRequest(product.id, product.amount + 1));
+  };
 
-  const decrement = (product: ProductParams) => {};
-
-  const handleFavorite = (product: ProductParams) => {};
+  const decrement = (product: ProductParams) => {
+    dispatch(CartActions.updateAmountRequest(product.id, product.amount - 1));
+  };
 
   return (
     <ProductItem>
@@ -52,13 +58,10 @@ const ProductCart = ({ item }: ProductCartProps) => {
         <LeftContent>
           <ProductImage
             source={{
-              uri: `${productImage[0]}`,
+              uri: `${productImage}`,
             }}
           />
           <WrapperActions>
-            <TouchableOpacity onPress={() => handleFavorite(item)}>
-              <FontAwesome name="heart-o" color="#a4a4a4" size={20} />
-            </TouchableOpacity>
             <TouchableOpacity onPress={() => handleDeleteProduct(item.id)}>
               <FontAwesome name="trash-o" color="#737373" size={20} />
             </TouchableOpacity>
@@ -67,12 +70,12 @@ const ProductCart = ({ item }: ProductCartProps) => {
         <RightContent>
           <Description>{item.title}</Description>
           <Wrapper>
-            <Title>Quantidade</Title>
+            <Title>Quantity</Title>
             <WrapperActions>
               <IconButton onPress={() => decrement(item)}>
                 <FontAwesome name="minus" color="#fff" size={15} />
               </IconButton>
-              <AmountText>6</AmountText>
+              <AmountText>{"" + item.amount}</AmountText>
               <IconButton onPress={() => increment(item)}>
                 <FontAwesome name="plus" color="#fff" size={15} />
               </IconButton>

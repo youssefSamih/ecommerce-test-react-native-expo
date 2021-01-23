@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react";
-// import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useDispatch } from "react-redux";
 
-// import * as CartActions from 'store/modules/cart/actions';
-// import * as FavoriteActions from 'store/modules/favorite/actions';
-// import { formatPrice } from 'util/format';
-// import Rating from 'components/Rating';
-// import Discount from 'components/Discount';
+import * as CartActions from "../../store/modules/cart/actions";
 
 import {
   ProductItem,
@@ -42,14 +38,10 @@ type itemProd = {
 };
 
 const ProdItem = ({ navigation, item }: ProdItemProps) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleAddProduct = (id: number) => {
-    // dispatch(CartActions.addToCartRequest(id));
-  };
-
-  const handleFavorite = (product: itemProd) => {
-    // dispatch(FavoriteActions.toggleFavorite(product));
+    dispatch(CartActions.addToCartRequest(id));
   };
 
   return (
@@ -74,10 +66,7 @@ const ProdItem = ({ navigation, item }: ProdItemProps) => {
         </Title>
 
         <PriceContainer>
-          <Price>
-            {formatPrice(item.price * (item.discount > 0 ? item.discount : 1))}
-          </Price>
-          <PriceInfo>in sight</PriceInfo>
+          <Price>{formatPrice(item.price)}</Price>
         </PriceContainer>
         <AddButton onPress={() => handleAddProduct(item.id)}>Add</AddButton>
       </RightContent>
