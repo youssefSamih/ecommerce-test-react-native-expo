@@ -1,4 +1,3 @@
-import Toast from "react-native-root-toast";
 import { all, select, takeLatest } from "redux-saga/effects";
 import { toggleRtl } from "./actions";
 

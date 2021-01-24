@@ -1,7 +1,7 @@
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
-import Toast from "react-native-root-toast";
 import { Platform } from "react-native";
+import ToastAlert from "./ToastAlert";
 
 const registerForPushNotifications = async () => {
   if (Constants.isDevice) {
@@ -14,25 +14,15 @@ const registerForPushNotifications = async () => {
       finalStatus = status;
     }
     if (finalStatus !== "granted") {
-      Toast.show("Failed to get push token for push notification!", {
-        duration: Toast.durations.SHORT,
-        position: -75,
-        backgroundColor: "green",
-        shadow: true,
-        hideOnPress: true,
+      ToastAlert({
+        message: "Failed to get push token for push notification!",
       });
       return;
     }
     const token = (await Notifications.getExpoPushTokenAsync()).data;
     console.log(token);
   } else {
-    Toast.show("Must use physical device for Push Notifications", {
-      duration: Toast.durations.SHORT,
-      position: -75,
-      backgroundColor: "green",
-      shadow: true,
-      hideOnPress: true,
-    });
+    ToastAlert({ message: "Must use physical device for Push Notifications" });
   }
 
   if (Platform.OS === "android") {

@@ -6,6 +6,7 @@ import colors from "../../styles/colors";
 import registerForPushNotifications from "../../util/registerForPushNotifications";
 import { Container, SafeContainer } from "./styles";
 import { toggleRtl } from "../../store/modules/rtl/actions";
+import registerForLocation from "../../util/registerForLocation";
 
 interface ProfileProps {
   navigation: any;
@@ -21,7 +22,7 @@ const Profile = ({ navigation }: ProfileProps) => {
         <ProfileButton
           name="envelope-o"
           margin={10}
-          onPress={async () => await registerForPushNotifications()}
+          onPress={registerForPushNotifications}
           title="Enable notification"
           rtl={isEnabled}
         />
@@ -36,6 +37,7 @@ const Profile = ({ navigation }: ProfileProps) => {
         </ProfileButton>
         <ProfileButton
           rtl={isEnabled}
+          onPress={registerForLocation}
           name="location-arrow"
           title="Enable location"
         />

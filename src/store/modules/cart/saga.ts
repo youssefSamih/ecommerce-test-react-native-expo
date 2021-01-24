@@ -1,9 +1,7 @@
 import { call, select, put, all, takeLatest } from "redux-saga/effects";
-import Toast from "react-native-root-toast";
-
 import api from "../../../services/api";
-
 import { addToCartSuccess, updateAmountSuccess } from "./actions";
+import ToastAlert from "../../../util/ToastAlert";
 
 interface CartParams {
   id?: any;
@@ -16,13 +14,8 @@ function* addToCart({ id }: CartParams) {
   );
   const currentAmount = productExists ? productExists.amount : 0;
   const amount = currentAmount + 1;
-
-  Toast.show("Product added to cart", {
-    duration: Toast.durations.SHORT,
-    position: -75,
-    backgroundColor: "green",
-    shadow: true,
-    hideOnPress: true,
+  ToastAlert({
+    message: "Product added to cart",
   });
 
   if (productExists) {
