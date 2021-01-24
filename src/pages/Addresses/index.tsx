@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import { Button, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
 import { locationTypes } from "../../interface";
 import PickLocation from "../../components/PickLocation";
 import Input from "../../components/Input";
 import colors from "../../styles/colors";
 import { Container, SafeContainer, Header } from "./style";
-import { SpinnerLoading } from "../sharedStyle";
 import validate from "../../util/validation";
+import { setPlaces } from "../../store/modules/places/actions";
 
 interface AddressessProps {
   navigation: any;
 }
 
 const Addressess = ({ navigation }: AddressessProps) => {
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const places = useSelector((state: { places: any }) => state.places);
+  console.log(places);
   const [addressData, setAddressData] = useState({
     controls: {
       placeName: {
@@ -60,20 +63,24 @@ const Addressess = ({ navigation }: AddressessProps) => {
       };
     });
   };
-  const placeAddedHandler = () => {};
+  const placeAddedHandler = () => {
+    dispatch(
+      setPlaces({
+        placeName: addressData.controls.placeName.value,
+        location: addressData.controls.location.value,
+      })
+    );
+  };
   let submitButton = (
     <Button
       title="Add the Place!"
-      onPress={() => {}}
+      onPress={placeAddedHandler}
       disabled={
         !addressData.controls.placeName.valid ||
         !addressData.controls.location.valid
       }
     />
   );
-  if (loading) {
-    submitButton = <SpinnerLoading />;
-  }
   return (
     <SafeContainer>
       <Container>
