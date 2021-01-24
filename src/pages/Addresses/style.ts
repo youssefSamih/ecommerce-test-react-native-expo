@@ -20,3 +20,9 @@ export const Header = styled.View`
   background: ${colors.white};
   padding: 15px 15px 15px 15px;
 `;
+
+export const PlacesContainer = styled.ScrollView.attrs({
+  showVerticalScroll: false,
+})`
+  flex: 0.9;
+`;

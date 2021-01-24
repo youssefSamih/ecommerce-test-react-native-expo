@@ -6,9 +6,10 @@ import { locationTypes } from "../../interface";
 import PickLocation from "../../components/PickLocation";
 import Input from "../../components/Input";
 import colors from "../../styles/colors";
-import { Container, SafeContainer, Header } from "./style";
+import { Container, SafeContainer, Header, PlacesContainer } from "./style";
 import validate from "../../util/validation";
 import { setPlaces } from "../../store/modules/places/actions";
+import ProfileButton from "../../components/ProfileButton";
 
 interface AddressessProps {
   navigation: any;
@@ -16,8 +17,9 @@ interface AddressessProps {
 
 const Addressess = ({ navigation }: AddressessProps) => {
   const dispatch = useDispatch();
-  const places = useSelector((state: { places: any }) => state.places);
+  const places = useSelector((state: { places: any }) => state.places?.places);
   console.log(places);
+  const isEnabled = useSelector((state: any) => state.rtl);
   const [addressData, setAddressData] = useState({
     controls: {
       placeName: {
@@ -100,6 +102,15 @@ const Addressess = ({ navigation }: AddressessProps) => {
         />
         {submitButton}
       </Container>
+      <PlacesContainer>
+        {!places ? (
+          <></>
+        ) : (
+          places?.map((val: { placeName: string }) => (
+            <ProfileButton margin={10} title={val?.placeName} rtl={isEnabled} />
+          ))
+        )}
+      </PlacesContainer>
     </SafeContainer>
   );
 };

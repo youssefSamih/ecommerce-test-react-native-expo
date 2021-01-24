@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Container, Icon, Wrapper, Title } from "./styles";
 
 interface ProfileButtonProps {
-  name: string;
+  name?: string;
   children?: ReactNode;
   margin?: number;
   title: string;
