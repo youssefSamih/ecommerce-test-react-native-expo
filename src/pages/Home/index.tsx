@@ -25,14 +25,16 @@ const all = require("../../../assets/icons/online-store.png");
 const Home = ({ navigation }: HomeProps) => {
   const [department, setDepartment] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [category, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [page, setPagination] = useState({ previousLimit: 6, newLimit: 6 });
   const loadCategories = useCallback(async () => {
     const response = await api.get("categories");
     setCategories(response.data);
   }, []);
   const loadProducts = useCallback(async () => {
-    const response = await api.get("/");
+    const response = await api.get(`/?limit=${page.newLimit}`);
     setProducts(response.data);
   }, []);
   useEffect(() => {
@@ -42,6 +44,13 @@ const Home = ({ navigation }: HomeProps) => {
     registerForPushNotifications();
     setLoading(false);
   }, [loadCategories, loadProducts, registerForPushNotifications]);
+  useEffect(() => {
+    if (page.previousLimit < page.newLimit) {
+      setLoadingMore(true);
+      loadProducts();
+      setLoadingMore(false);
+    }
+  }, [loadProducts, page.previousLimit, page.newLimit]);
   useMemo(async () => {
     setLoading(true);
     let response;
@@ -55,6 +64,18 @@ const Home = ({ navigation }: HomeProps) => {
     loadProducts();
     setLoading(false);
   }, []);
+  const LoadMoreData = () => {
+    setPagination((prev) => ({
+      previousLimit: prev.newLimit,
+      newLimit: prev.newLimit + 6,
+    }));
+  };
+  const renderFooter = () => {
+    if (loadingMore) {
+      return <SpinnerLoading />;
+    }
+    return <></>;
+  };
   return (
     <Container>
       <DepartmentContainer>
@@ -92,6 +113,9 @@ const Home = ({ navigation }: HomeProps) => {
                 refreshControl={
                   <RefreshControl refreshing={loading} onRefresh={onRefresh} />
                 }
+                onEndReachedThreshold={0}
+                onEndReached={() => LoadMoreData()}
+                ListFooterComponent={renderFooter}
               />
             ) : loading ? (
               <SpinnerLoading />
