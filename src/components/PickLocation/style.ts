@@ -8,5 +8,5 @@ export const Container = styled.SafeAreaView`
 
 export const MapStyle = styled(MapView)`
   width: 100%;
-  height: 250;
+  height: 250px;
 `;

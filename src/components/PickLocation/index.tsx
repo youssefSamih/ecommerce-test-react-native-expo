@@ -2,16 +2,20 @@ import React, { useRef, useState } from "react";
 import { Container, MapStyle } from "./style";
 import { Dimensions } from "react-native";
 import { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { locationTypes } from "../../interface";
 
-const PickLocation = () => {
+interface PickLocationProps {
+  onLocationPick: (location: locationTypes) => void;
+}
+
+const PickLocation = ({ onLocationPick }: PickLocationProps) => {
   const [location, setLocation] = useState({
     focusedLocation: {
-      latitude: 37.7900352,
-      longitude: -122.4013726,
+      latitude: 33.589886,
+      longitude: -7.603869,
       latitudeDelta: 0.0122,
       longitudeDelta:
-        (Dimensions.get("window").width / Dimensions.get("window").height) *
-        0.0122,
+        Dimensions.get("window").width / Dimensions.get("window").height,
     },
     locationChosen: false,
   });
@@ -33,14 +37,10 @@ const PickLocation = () => {
         locationChosen: true,
       };
     });
-    console.log({
+    onLocationPick({
       latitude: coords.latitude,
       longitude: coords.longitude,
     });
-    // this.props.onLocationPick({
-    //   latitude: coords.latitude,
-    //   longitude: coords.longitude,
-    // });
   };
   let marker = null;
   if (location.locationChosen) {
