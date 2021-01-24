@@ -32,4 +32,8 @@ $ yarn ios / npm run ios
 
 ## Live Expo link
 
-https://expo.io/@/projects/e_commerce-test
+https://snack.expo.io/@youssef.samih97/ecommerce-test-react-native-expo
+
+## Recommandation Test on expo
+
+use real Device or local simulator
