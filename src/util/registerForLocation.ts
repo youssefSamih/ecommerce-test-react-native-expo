@@ -14,7 +14,6 @@ const registerForLocation = async () => {
     ToastAlert({
       message: "Permission to access location granted",
     });
-    return;
   }
 
   let location = await Location.getCurrentPositionAsync({});

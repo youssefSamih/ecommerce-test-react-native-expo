@@ -2,14 +2,15 @@ import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { Text } from "react-native";
+import { tabBarOnPressProps } from "./interfaces";
 import TabIcon from "../components/TabIcon";
+import TabStateIcon from "../components/TabStateIcon";
 import Home from "../pages/Home";
 import Product from "../pages/Product";
 import Profile from "../pages/Profile";
 import Cart from "../pages/Cart";
+import Addresses from "../pages/Addresses";
 import colors from "../styles/colors";
-import { tabBarOnPressProps } from "./interfaces";
-import TabStateIcon from "../components/TabStateIcon";
 
 const HomeRoute = createSwitchNavigator(
   {
@@ -32,6 +33,7 @@ const HomeRoute = createSwitchNavigator(
 const ProfileRoute = createSwitchNavigator(
   {
     Profile,
+    Addresses,
   },
   {
     initialRouteName: "Profile",

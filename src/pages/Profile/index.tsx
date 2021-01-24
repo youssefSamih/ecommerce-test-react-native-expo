@@ -43,6 +43,11 @@ const Profile = ({ navigation }: ProfileProps) => {
         />
         <ProfileButton
           rtl={isEnabled}
+          onPress={() =>
+            navigation.navigate("Addresses", {
+              keyScreen: (navigation.state as { key: any }).key,
+            })
+          }
           name="truck"
           margin={10}
           title="Manage Addresses"
