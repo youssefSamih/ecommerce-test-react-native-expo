@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "e_commerce",
-    "slug": "e_commerce",
+    "name": "e_commerce-Test",
+    "slug": "e_commerce-test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "com.youssef.e_commerce",
       "supportsTablet": true
@@ -26,6 +28,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "App test",
+    "githubUrl": "https://github.com/youssefSamih/ecommerce-test-react-native-expo"
   }
 }
