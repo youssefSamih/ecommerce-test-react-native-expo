@@ -1,8 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import * as CartActions from "../../store/modules/cart/actions";
-
 import {
   ProductItem,
   LeftContent,
@@ -11,7 +10,6 @@ import {
   Title,
   PriceContainer,
   Price,
-  PriceInfo,
   AddButton,
 } from "./styles";
 import { formatPrice } from "../../util/format";
@@ -38,14 +36,14 @@ type itemProd = {
 };
 
 const ProdItem = ({ navigation, item }: ProdItemProps) => {
+  const isEnabled = useSelector((state: any) => state.rtl);
   const dispatch = useDispatch();
-
   const handleAddProduct = (id: number) => {
     dispatch(CartActions.addToCartRequest(id));
   };
 
   return (
-    <ProductItem>
+    <ProductItem rtl={isEnabled}>
       <LeftContent>
         <ProductImage
           source={{

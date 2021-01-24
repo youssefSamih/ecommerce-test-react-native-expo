@@ -5,13 +5,14 @@ import colors from "../../styles/colors";
 
 interface ContainerProps {
   margin?: number;
+  rtl?: boolean;
 }
 
 export const Container = styled.TouchableOpacity<ContainerProps>`
   padding: 20px;
   background: ${colors.white};
   margin: ${({ margin }) => (margin !== 0 ? `${margin}px 0` : `1px 0px`)};
-  flex-direction: row;
+  flex-direction: ${({ rtl }) => (rtl ? "row-reverse" : "row")};
   align-items: center;
   justify-content: space-between;
 `;
@@ -28,8 +29,11 @@ export const Icon = styled(FontAwesome).attrs({
   width: 25px;
 `;
 
-export const Wrapper = styled.View`
+export const Wrapper = styled.View<ContainerProps>`
   flex: 1;
   align-items: flex-start;
   margin-left: 20px;
+  flex-direction: ${({ rtl }) => (rtl ? "row-reverse" : "row")};
+  justify-content: space-between;
+  align-items: center;
 `;

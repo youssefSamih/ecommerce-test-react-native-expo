@@ -1,10 +1,9 @@
 import produce from "immer";
 
-export default function cart(
+const cart = (
   state = [],
   action: { type?: any; id?: any; amount?: any; product?: any }
-) {
-  // eslint-disable-next-line consistent-return
+) => {
   return produce(state, (draft: any) => {
     switch (action.type) {
       case "@cart/ADD_SUCCESS": {
@@ -38,4 +37,6 @@ export default function cart(
         return state;
     }
   });
-}
+};
+
+export default cart;
