@@ -1,11 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Container, MapStyle } from "./style";
 import { Dimensions } from "react-native";
-import { Marker } from "react-native-maps";
-import Constants from "expo-constants";
+import { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 
 const PickLocation = () => {
-  console.log(Constants.manifest.extra.MAP_API_KEY);
   const [location, setLocation] = useState({
     focusedLocation: {
       latitude: 37.7900352,
@@ -35,6 +33,10 @@ const PickLocation = () => {
         locationChosen: true,
       };
     });
+    console.log({
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+    });
     // this.props.onLocationPick({
     //   latitude: coords.latitude,
     //   longitude: coords.longitude,
@@ -51,6 +53,7 @@ const PickLocation = () => {
         region={!location.locationChosen ? location.focusedLocation : undefined}
         onPress={pickLocationHandler}
         ref={(ref) => (map = ref)}
+        provider={PROVIDER_GOOGLE}
       >
         {marker}
       </MapStyle>
