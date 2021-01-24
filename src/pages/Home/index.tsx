@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, RefreshControl } from "react-native";
 import CustomText from "../../components/CustomText";
 import ProductItem from "../../components/ProductItem";
 import api from "../../services/api";
@@ -50,6 +50,11 @@ const Home = ({ navigation }: HomeProps) => {
     setProducts(data);
     setLoading(false);
   }, [department]);
+  const onRefresh = React.useCallback(() => {
+    setLoading(true);
+    loadProducts();
+    setLoading(false);
+  }, []);
   return (
     <Container>
       <DepartmentContainer>
@@ -84,6 +89,9 @@ const Home = ({ navigation }: HomeProps) => {
                 renderItem={({ item }) => (
                   <ProductItem item={item} navigation={navigation} />
                 )}
+                refreshControl={
+                  <RefreshControl refreshing={loading} onRefresh={onRefresh} />
+                }
               />
             ) : loading ? (
               <SpinnerLoading />
