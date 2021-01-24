@@ -1,7 +1,8 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Container, SafeContainer, Header } from "./style";
 import { FontAwesome } from "@expo/vector-icons";
+import PickLocation from "../../components/PickLocation";
 
 interface AddressessProps {
   navigation: any;
@@ -19,7 +20,7 @@ const Addressess = ({ navigation }: AddressessProps) => {
             <FontAwesome name="arrow-left" color="#a4a4a4" size={18} />
           </TouchableOpacity>
         </Header>
-        <Text>Hello Addressess</Text>
+        <PickLocation />
       </Container>
     </SafeContainer>
   );
